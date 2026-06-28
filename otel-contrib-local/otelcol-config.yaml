@@ -1,0 +1,33 @@
+receivers:
+  postgresql:
+    endpoint: postgres:5432
+    username: otelu
+    password: ${env:POSTGRESQL_PASSWORD}
+    databases:
+      - postgres
+      - db_staging
+      - db_prod
+    collection_interval: 10s
+    tls:
+      insecure: true
+    metrics:
+      postgresql.database.locks:
+        enabled: true
+
+exporters:
+  prometheus:
+    endpoint: 0.0.0.0:9464
+  debug:
+    verbosity: detailed
+
+service:
+  telemetry:
+    logs:
+      level: info
+  pipelines:
+    metrics:
+      receivers: [postgresql]
+      exporters: [prometheus, debug]
+    logs:
+      receivers: [postgresql]
+      exporters: [debug]
