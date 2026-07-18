@@ -17,7 +17,7 @@ Postgres → postgresqlreceiver → prometheus exporter → :9464/metrics ← Pr
 ## Prerequisites
 
 - Docker with BuildKit enabled
-- Local clone of `opentelemetry-collector-contrib` at `/Users/kartikgola/github.com/kartikgola/opentelemetry-collector-contrib`
+- Local clone of `opentelemetry-collector-contrib` at `/home/kg/github.com/kartikgola/opentelemetry-collector-contrib`
 
 The `additional_contexts` in `docker-compose.yaml` points to that path. Update it if your clone is elsewhere.
 
@@ -36,7 +36,7 @@ The first build takes a few minutes — it compiles the collector from source.
 Changes go in the local `opentelemetry-collector-contrib` clone. For example:
 
 ```
-/Users/kartikgola/github.com/kartikgola/opentelemetry-collector-contrib/receiver/postgresqlreceiver/client.go
+/home/kg/github.com/kartikgola/opentelemetry-collector-contrib/receiver/postgresqlreceiver/client.go
 ```
 
 ### 2. Add a replace directive for the component you changed

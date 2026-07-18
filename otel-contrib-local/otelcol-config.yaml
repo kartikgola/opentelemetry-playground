@@ -7,7 +7,7 @@ receivers:
       - postgres
       - db_staging
       - db_prod
-    collection_interval: 10s
+    collection_interval: 5s
     tls:
       insecure: true
     metrics:
@@ -17,6 +17,7 @@ receivers:
 exporters:
   prometheus:
     endpoint: 0.0.0.0:9464
+    metric_expiration: 5s
   debug:
     verbosity: detailed
 
