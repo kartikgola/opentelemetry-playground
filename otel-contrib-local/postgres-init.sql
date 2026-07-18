@@ -62,5 +62,5 @@ FROM prod2;
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 GRANT SELECT ON prod2 TO otelu;
 
-\c postgres
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+\c db_prod
+DROP DATABASE postgres;

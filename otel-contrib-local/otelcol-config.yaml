@@ -4,7 +4,6 @@ receivers:
     username: otelu
     password: ${env:POSTGRESQL_PASSWORD}
     databases:
-      - postgres
       - db_staging
       - db_prod
     collection_interval: 5s
