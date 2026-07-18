@@ -14,7 +14,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./postgres-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro,Z
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U root -d postgres"]
       interval: 5s
@@ -26,7 +26,7 @@ services:
       context: .
       dockerfile: Dockerfile.otelcol
       additional_contexts:
-        contrib: /Users/kartikgola/github.com/kartikgola/opentelemetry-collector-contrib
+        contrib: /home/kg/github.com/kartikgola/opentelemetry-collector-contrib
     depends_on:
       postgres:
         condition: service_healthy
@@ -38,7 +38,7 @@ services:
     ports:
       - "9464:9464"
     volumes:
-      - ./otelcol-config.yaml:/etc/otelcol/config.yaml:ro
+      - ./otelcol-config.yaml:/etc/otelcol/config.yaml:ro,Z
 
   prometheus:
     image: prom/prometheus:v3.5.0
@@ -49,7 +49,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml:ro,Z
 
   grafana:
     image: grafana/grafana:12.1.1
@@ -62,4 +62,4 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana-datasource-prometheus.yaml:/etc/grafana/provisioning/datasources/prometheus.yml:ro
+      - ./grafana-datasource-prometheus.yaml:/etc/grafana/provisioning/datasources/prometheus.yml:ro,Z
